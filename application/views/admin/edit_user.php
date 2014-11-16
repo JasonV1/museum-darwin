@@ -27,8 +27,8 @@ foreach ($user as $row) {
                 <option value="none" selected="selected">Selecteer rol</option>
                 <option value="1">Admin</option>
                 <option value="2">Manager</option>
-                <option value="3">Verkoper</option>
-                <option value="4">Educatieve medewerker</option>
+                <option value="3">Educatieve medewerker</option>
+                <option value="4">Verkoper</option>
             </select>
         </td>
         <tr>

@@ -62,12 +62,10 @@ class User extends CI_Controller
             redirect('manager/welcome_manager', 'refresh');
         }
         if ($result[0]->role_id == 3) {
-            echo "educatieve medewerker!";
-            //redirect('eigenaar/welcome_eigenaar','refresh');
+            redirect('edumed/welcome_edumed','refresh');
         }
         if ($result[0]->role_id == 4) {
-            echo "verkoper!";
-            //redirect('chef/welcome_chef','refresh');
+            redirect('salesman/welcome_salesman','refresh');
         } else {
             echo "Login mislukt, probeer opnieuw";
             $this->login();

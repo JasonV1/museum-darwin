@@ -106,7 +106,7 @@ class Booking extends CI_Controller
         //load view for the pdf
         $html = $this->load->view('ticket/ticket_view', $data, TRUE);
         $mpdf->WriteHTML($html);
-        $mpdf->Output();
+        $mpdf->Output('ticket.pdf', 'D');
     }
 
     public function add_ticket()

@@ -24,6 +24,14 @@ class Admin extends CI_Controller
         $this->load->view('footer');
     }
 
+    public function image_overview($id)
+    {
+        $this->load->view("header");
+        $data['query'] = $this->admin_model->get_image_id($id);
+        $this->load->view('admin/image_overview', $data);
+        $this->load->view("footer");
+    }
+
     public function video_overview($id)
     {
         $this->load->view("header");
@@ -235,6 +243,27 @@ class Admin extends CI_Controller
         $data['user'] = $this->admin_model->get_user_id($id);
         $this->load->view('admin/edit_user', $data);
         $this->load->view('footer');
+    }
+
+    public function delete_user($id)
+    {
+        $this->admin_model->delete_user($id);
+        $this->users();
+        redirect('admin/users', 'refresh');
+    }
+
+    public function delete_image($id)
+    {
+        $this->admin_model->delete_image($id);
+        $this->files();
+        redirect('admin/files', 'refresh');
+    }
+
+    public function delete_video($id)
+    {
+        $this->admin_model->delete_video($id);
+        $this->files();
+        redirect('admin/files', 'refresh');
     }
 
     public function user_edit()

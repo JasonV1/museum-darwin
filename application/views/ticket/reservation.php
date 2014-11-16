@@ -57,7 +57,7 @@
     <label>
         <input type='hidden' name='id' id="id" />
     </label>
-        <input type="submit" class="button" value="Reserveren" />
+        <input type="submit" class="button" value="Bestellen" />
     </label>
 
 

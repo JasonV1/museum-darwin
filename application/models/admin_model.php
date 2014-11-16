@@ -101,6 +101,21 @@ class Admin_model extends CI_Model
 
     }
 
+    public function delete_user($id) {
+        $this->db->query("DELETE FROM employee
+                        WHERE id = '".$id."'");
+    }
+
+    public function delete_image($id) {
+        $this->db->query("DELETE FROM image
+                        WHERE id = '".$id."'");
+    }
+
+    public function delete_video($id) {
+        $this->db->query("DELETE FROM video
+                        WHERE id = '".$id."'");
+    }
+
     public function add_image()
     {
         $data = array(

@@ -27,14 +27,14 @@
         /* Set a background color that will be displayed
            while the background image is loading */
         background-color: #464646;
-    <?php $dayforbackground=date('N'); ?> <?php if ($dayforbackground==1) { ?> background-color: #f7f8f2;
-    <?php } ?> <?php if ($dayforbackground==2) { ?> background-color: #f5f9EC;
-    <?php } ?> <?php if ($dayforbackground==3) { ?> background-color: #C4E4ED;
+    <?php $dayforbackground=date('N'); ?> <?php if ($dayforbackground==1) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
+    <?php } ?> <?php if ($dayforbackground==2) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
+    <?php } ?> <?php if ($dayforbackground==3) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
     <?php } ?> <?php if ($dayforbackground==4) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
     <?php } ?> <?php if ($dayforbackground==5) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg2.jpg') no-repeat center fixed;
 
     <?php } ?> <?php if ($dayforbackground==6) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
-    <?php } ?> <?php if ($dayforbackground==7) { ?> background-color: #f7f8f2;
+    <?php } ?> <?php if ($dayforbackground==7) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
 
     <?php } ?>
 

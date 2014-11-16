@@ -317,3 +317,27 @@ footer {
     border-color:#000000;
     font-weight:bold;
 }
+
+#collection {
+    float:left;
+    width:50%;
+}
+
+#collection_sub {
+    background: #f8000a;
+    border:1px solid #000000;
+    border-radius:10px;
+    width:auto;
+    float:right;
+    padding:5px;
+}
+
+.environment {
+    width:500px;
+    height:300px;
+}
+
+#room {
+    width:60%;
+    float:left;
+}
