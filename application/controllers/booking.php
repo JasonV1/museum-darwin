@@ -8,6 +8,13 @@ class Booking extends CI_Controller
         $this->load->model('ticket_model');
     }
 
+    public function index()
+    {
+        $this->load->view('header');
+        $this->load->view('welcome_message');
+        $this->load->view('footer');
+    }
+
     public function thank()
     {
         $data['title'] = 'Thanks';
@@ -23,14 +30,16 @@ class Booking extends CI_Controller
         $this->load->view('footer');
     }
 
-    public function calc_age() {
+    public function calc_age()
+    {
         $now = new DateTime();
         $birthday = new DateTime($this->input->post('geboortedatum'));
         $age = $now->diff($birthday);
         return $age;
     }
 
-    public function calc_price() {
+    public function calc_price()
+    {
 
         $age = $this->calc_age();
         $price = "gratis";
@@ -85,11 +94,12 @@ class Booking extends CI_Controller
 
     }
 
-    public function get_pdf() {
+    public function get_pdf()
+    {
         $this->load->library('mpdf');
         //get data from the model
         $data['query'] = $this->ticket_model->get_ticket_data();
-        $mpdf = new mPDF('c','A4','','',32,25,27,25,16,13);
+        $mpdf = new mPDF('c', 'A4', '', '', 32, 25, 27, 25, 16, 13);
         $mpdf->SetDisplayMode('fullpage');
         //whether to indent the first level of a list
         $mpdf->list_indent_first_level = 0; // 1 or 0 -
@@ -105,13 +115,13 @@ class Booking extends CI_Controller
         $this->ticket_model->add_ticket($email);
         $this->get_pdf();
         if (isset($_SESSION['most_recent_activity']) &&
-            (time() -   $_SESSION['most_recent_activity'] > 600)) {
+            (time() - $_SESSION['most_recent_activity'] > 600)
+        ) {
 
             //600 seconds = 10 minutes
             $this->session->unset_userdata('ticket_data');
 
-    }
+        }
         $_SESSION['most_recent_activity'] = time(); // the start of the session.
-
     }
 }

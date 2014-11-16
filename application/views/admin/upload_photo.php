@@ -1,5 +1,5 @@
 <?php echo validation_errors(); ?>
-<form method="post" action="upload" enctype="multipart/form-data" />
+<form method="post" action="photo_upload" enctype="multipart/form-data" />
 
     <table>
         <tr>

@@ -14,7 +14,7 @@
                     <a href='".base_url()."admin/files'>Bestanden</a>
                  </li>
                  <li>
-                    <a href='".base_url()."admin/users'>Gebruikers</a>
+                    <a href='".base_url()."admin/users'>Medewerkers</a>
                  </li>
                  <li>
                     <a href='".base_url()."user/logout'>Logout</a>

@@ -6,11 +6,11 @@
             <td>
                 <select name="created_at">
                     <?php foreach ($created_at as $c) { ?>
-                    <option value="<?=$c?>"><?=$c?></option>
+                        <option value="<?= $c ?>"><?= $c ?></option>
                     <?php
                     } ?>
-                </select >
-            </td >
+                </select>
+            </td>
             <td ><input type = "submit" name = "submit" value = "Selecteer" ></td >
         </tr >
     </form >

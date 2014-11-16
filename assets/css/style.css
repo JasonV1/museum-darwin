@@ -300,3 +300,20 @@ footer {
     /*padding: 5px;*/
     /*border: 1px solid #999;*/
 /*}*/
+
+#files th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+#files img {
+    width:40px;
+    height:40px;
+}
+
+.button_new_user {
+    margin:10px;
+    background: #570800;
+    border-color:#000000;
+    font-weight:bold;
+}

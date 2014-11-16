@@ -24,8 +24,17 @@ class Manager extends CI_Controller
     public function get_visitors()
     {
         $this->load->view('header');
-        $this->load->view('manager/visitors');
+        $data['reservations'] = $this->manager_model->get_reservation_data();
+        $data['created_at'] = $this->manager_model->get_reservation_dates();
+        $this->load->view('manager/visitors', $data);
         $this->load->view('footer');
+    }
+
+    public function show_visitors() {
+        $data['visitors'] = $this->manager_model->get_given_date($_POST);
+        $this->load->view("header");
+        $this->load->view("manager/visitors_per_day", $data);
+        $this->load->view("footer");
     }
 
     public function get_day_data()
@@ -36,17 +45,6 @@ class Manager extends CI_Controller
         $this->load->view("footer");
 
     }
-
-    public function export_excel()
-    {
-        header('Content-Type: application/force-download');
-        header('Content-disposition: attachment; filename=export');
-        // Fix for crappy IE bug in download.
-        header("Pragma: ");
-        header("Cache-Control: ");
-        echo $_REQUEST['datatodisplay'];
-    }
-
     public function get_reservations()
     {
         $this->load->view('header');

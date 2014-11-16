@@ -34,18 +34,6 @@ class Manager_model extends CI_Model
         return $return;
     }
 
-//    public function get_reservations()
-//    {
-//        $query = $this->db->query("SELECT *
-//                                    FROM booking
-//                                    GROUP BY created_at
-//                                    ORDER BY created_at ASC
-//                                    ");
-//        foreach($query->result_array() as $row){
-//            $return[$row['ticket_id']] = $row['created_at'];
-//        }
-//        return $return;
-//    }
     public function get_reservation_data()
     {
         $query = $this->db->query("SELECT *

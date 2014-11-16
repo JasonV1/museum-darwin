@@ -2,11 +2,13 @@
 <html>
     <head>
         <link rel='stylesheet' href='<?php echo base_url(); ?>assets/css/style.css' type='text/css'>
-        <link rel='stylesheet' href='<?php echo base_url(); ?>assets/pikaday/css/pikaday.css' type='text/css'>
-        <script src="<?php echo base_url(); ?>assets/pikaday/moment.js"></script>
-        <script src="<?php echo base_url(); ?>assets/pikaday/pikaday.js"></script>
+        <link rel="stylesheet" href="<?= base_url(); ?>assets/js/fancybox/source/jquery.fancybox.css"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCwKEmADn_J97zp7jHP5x41LIBeM00ngnE"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.battatech.excelexport.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="<?= base_url(); ?>assets/js/fancybox/source/jquery.fancybox.pack.js"></script>
+
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.battatech.excelexport.js"></script>
 
         <link rel="icon" href="<?php echo base_url(); ?>assets/favicon.ico" type="image/x-icon">
         <title>Darwin Museum</title>

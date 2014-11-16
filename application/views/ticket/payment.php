@@ -1,6 +1,4 @@
 <h1>Betaling aan het Darwin Museum</h1>
-<?php echo validation_errors(); ?>
-<?php echo form_open('booking/add_ticket'); ?>
 <div class="payment_bank">
     <table>
         <tr>
@@ -14,7 +12,11 @@
                     </select>
 
             </div>
-            <td><input type="submit" name="submit" value="betalen" /></td>
+            <td>
+                <a onclick="open_in_new_tab_and_reload('add_ticket')" href="index">
+                    <button>Betalen</button>
+                </a>
+            </td>
         </tr>
 
     </table>
@@ -44,4 +46,15 @@
         </tr>
     </table>
 </div>
-<?php echo form_close(); ?>
+
+<script>
+    function open_in_new_tab_and_reload(url)
+    {
+        //Open in new tab
+        window.open(url, '_blank');
+        //focus to that window
+        window.focus();
+        //reload current page
+        location.reload();
+    }
+</script>
