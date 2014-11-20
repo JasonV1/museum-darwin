@@ -341,3 +341,9 @@ footer {
     width:60%;
     float:left;
 }
+
+.tours {
+    border:1.5px solid #c6cdaf;
+    background:#cccccc;
+}
+

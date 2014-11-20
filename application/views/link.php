@@ -74,10 +74,7 @@
                      <a href='" . base_url() . "visitor/collection'>Collectie & Zalen</a>
                 </li>
                 <li>
-                    <a href='#'>Toeren</a>
-                </li>
-                <li>
-                    <a href='#'>Contact</a>
+                    <a href='" . base_url() . "tour/view_tours'>Toeren</a>
                 </li>";
     }
     ?>
