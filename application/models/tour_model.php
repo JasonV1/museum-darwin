@@ -54,21 +54,23 @@ class Tour_model extends CI_Model
 
     }
 
-    public function update_tour($starting = 7) {
-        $result = $this->get_tour_date();
+    public function update_tour($starting = 7)
+    {
         $date = new DateTime("+ $starting days");
         $day = $date->format('Y-m-d');
 
-        if (count($result) < 8 ) {
-            $this->db->query("UPDATE tours t JOIN tours_reservations r
-                              ON t.t_id=r.tour_id
-                              SET status = 'in afwachting'
-                              WHERE r.reservation_id <= 8
-                              AND day = '$day'");
+        $query = $this->db->query("SELECT t.t_id, t.name, t.status, COUNT( r.reservation_id ) AS c
+                      FROM tours t
+                      JOIN tours_reservations r ON t.t_id = r.tour_id
+                      WHERE t.day =  ?
+                      GROUP BY t.t_id
+                      HAVING COUNT( c ) <=8", array($day));
+
+        foreach ($query->result() as $row)
+        {
+            $this->db->query("UPDATE tours SET status = 'geannuleerd' WHERE t_id = ? ", array($row->t_id));
         }
-        else {
-            echo "oeps";
-        }
+
     }
 
     /**

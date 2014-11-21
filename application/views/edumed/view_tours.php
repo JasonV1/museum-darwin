@@ -16,17 +16,7 @@
                 <td><?= $row->day; ?></td>
                 <td>&euro;<?= $row->price; ?></td>
                 <td><?= $row->spots; ?></td>
-                <td><a href="tour_overview">
-                        <button>Meer info</button>
-                    </a></td>
-                <?php if ($row->status == 'vol' || $row->status == 'geannuleerd') { ?>
-                    <td>Reserveren niet meer mogelijk</td>
-                <?php } else {
-                    ?>
-                    <td><a href="reservate_tour/<?= $row->t_id; ?>">
-                            <button>Reserveren</button>
-                        </a></td>
-                <?php } ?>
+                <td><a href="cancel_tour/<?= $row->t_id; ?>"><button>Annuleren</button></a></td>
             </tr>
         <?php
         }
