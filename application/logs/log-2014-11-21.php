@@ -154,3 +154,4 @@ ERROR - 2014-11-21 11:23:14 --> Query error: You have an error in your SQL synta
 ERROR - 2014-11-21 11:23:20 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'HAVING COUNT (r.reservation_id) <= 8' at line 6
 ERROR - 2014-11-21 11:23:29 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY t.t_id
                             HAVING COUNT (r.reservation_id) <= ' at line 6
+ERROR - 2014-11-21 12:05:07 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== 20' at line 5

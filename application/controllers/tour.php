@@ -55,6 +55,7 @@ class Tour extends CI_Controller
     }
 
     public function update_tour() {
+        $this->tour_model->update_tour_full();
         $this->tour_model->update_tour();
     }
 

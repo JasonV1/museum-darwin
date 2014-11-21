@@ -54,6 +54,19 @@ class Tour_model extends CI_Model
 
     }
 
+    public function update_tour_full() {
+        $query = $this->db->query("SELECT t.t_id, t.name, t.status, COUNT( r.reservation_id ) AS c
+                      FROM tours t
+                      JOIN tours_reservations r ON t.t_id = r.tour_id
+                      GROUP BY t.t_id
+                      HAVING COUNT( c ) = 20");
+
+        foreach ($query->result() as $row)
+        {
+            $this->db->query("UPDATE tours SET status = 'vol' WHERE t_id = ? ", array($row->t_id));
+        }
+    }
+
     public function update_tour($starting = 7)
     {
         $date = new DateTime("+ $starting days");
@@ -104,10 +117,6 @@ class Tour_model extends CI_Model
 
 
         if (count($result) < 1) {
-            if (count($result2) == 20) {
-                echo "<h1>De toer die u probeert te reserveren is vol.</h1>";
-                return false;
-            }
             $this->db->insert('visitor', $data);
             $tour = array(
                 'tour_id' => $this->session->userdata["tour_data"]["tour_id"],
@@ -117,10 +126,6 @@ class Tour_model extends CI_Model
             $this->db->insert('tours_reservations', $tour);
             echo "Bedankt! Uw toer is gereserveerd.";
         } else {
-            if (count($result2) == 20) {
-                echo "<h1>De toer die u probeert te reserveren is vol.</h1>";
-                return false;
-            }
             $tour = array(
                 'tour_id' => $this->session->userdata["tour_data"]["tour_id"],
                 'user_id' => $result[0]->id,
