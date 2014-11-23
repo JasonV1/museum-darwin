@@ -1,4 +1,5 @@
 <ul>
+    <!-- FINAL -->
     <?php
     // check if user is logged in
     if ($this->session->userdata("logged_in")) {
@@ -19,6 +20,7 @@
                     <a href='" . base_url() . "user/logout'>Logout</a>
                  </li>";
         }
+        //2 = MANAGER
         if ($rol == 2) {
             echo "<li>
                     <a href='" . base_url() . "manager/welcome_manager'>Home</a>
@@ -36,6 +38,7 @@
                     <a href='" . base_url() . "user/logout'>Logout</a>
                  </li>";
         }
+        //3 = EDUCATIEVE MEDEWERKER
         if ($rol == 3) {
             echo "<li>
                     <a href='".base_url()."edumed/welcome_edumed'>Home</a>
@@ -47,6 +50,7 @@
                     <a href='".base_url()."user/logout'>Logout</a>
                  </li>";
         }
+        //4 = VERKOPER
         if ($rol == 4) {
             echo "<li>
                     <a href='".base_url()."salesman/welcome_salesman'>Home</a>

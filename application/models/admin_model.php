@@ -7,18 +7,28 @@ class Admin_model extends CI_Model
         parent::__construct();
     }
 
+    /**
+     * @return mixed
+     */
     public function get_photo_data()
     {
         $query = $this->db->query("SELECT * FROM image");
         return $query->result();
     }
 
+    /**
+     * @return mixed
+     */
     public function get_video_data()
     {
         $query = $this->db->query("SELECT * FROM video");
         return $query->result();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function get_video_id($id)
     {
         $this->db->where('id', $id);
@@ -26,6 +36,10 @@ class Admin_model extends CI_Model
         return $query->result();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function get_image_id($id)
     {
         $this->db->where('id', $id);
@@ -35,6 +49,7 @@ class Admin_model extends CI_Model
 
     public function edit_image()
     {
+        //update the image with post data
         $this->db->query("UPDATE image SET title ='" . $this->input->post('title') . "',
                                            description   = '" . $this->input->post('description') . "',
                                            bestand = '" . $_FILES['image']['name'] . "'
@@ -43,12 +58,16 @@ class Admin_model extends CI_Model
 
     public function edit_video($post)
     {
+        //update the video with post data
         $this->db->query("UPDATE video SET title ='" . $post['title'] . "',
                                            description   = '" . $post['description'] . "',
                                            bestand = '" . $_FILES['video']['name'] . "'
                             WHERE id='" . $post['id'] . "'");
     }
 
+    /**
+     * @return mixed
+     */
     public function get_user_data()
     {
         $query = $this->db->query("SELECT * FROM employee_role
@@ -56,6 +75,10 @@ class Admin_model extends CI_Model
         return $query->result();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function get_user_id($id)
     {
         $query = $this->db->query("SELECT * FROM employee_role
@@ -102,16 +125,19 @@ class Admin_model extends CI_Model
     }
 
     public function delete_user($id) {
+        //delete record with selected id
         $this->db->query("DELETE FROM employee
                         WHERE id = '".$id."'");
     }
 
     public function delete_image($id) {
+        //delete record with selected id
         $this->db->query("DELETE FROM image
                         WHERE id = '".$id."'");
     }
 
     public function delete_video($id) {
+        //delete record with selected id
         $this->db->query("DELETE FROM video
                         WHERE id = '".$id."'");
     }
@@ -121,7 +147,7 @@ class Admin_model extends CI_Model
         $data = array(
             'title' => $this->input->post('title'),
             'description' => $this->input->post('description'),
-            'bestand' => $_FILES['image']['name']);
+            'bestand' => $_FILES['image']['name']); // <- put only the file name in database
 
 
         $this->db->insert('image', $data);
@@ -132,7 +158,7 @@ class Admin_model extends CI_Model
         $data = array(
             'title' => $this->input->post('title'),
             'description' => $this->input->post('description'),
-            'bestand' => $_FILES['video']['name']);
+            'bestand' => $_FILES['video']['name']); // <- put only the file name in database
 
 
         $this->db->insert('video', $data);

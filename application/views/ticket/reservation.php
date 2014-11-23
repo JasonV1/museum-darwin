@@ -1,5 +1,5 @@
 
-
+<!-- FINAL -->
 <div class="prices">
     <h1>Prijzen</h1>
     <table>
@@ -24,7 +24,7 @@
 </div>
 <?php echo validation_errors(); ?>
 <?php echo form_open('booking/payment'); ?>
-
+<!-- FINAL -->
 <div class="box">
     <h1>Ticket Bestellen</h1>
     <label>

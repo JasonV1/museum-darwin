@@ -1,4 +1,4 @@
-// application/hooks/DisplayHook.php
+<!-- application/hooks/DisplayHook.php -->
 <?php
 class DisplayHook {
     public function captureOutput() {

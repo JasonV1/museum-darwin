@@ -15,7 +15,9 @@
     </head>
     <body>
         <header>
+            <!-- FINAL -->
             <img src="<?php echo base_url(); ?>assets/img/logo_en.png" alt="Logo" />
+            <!-- FINAL -->
             <img src="<?php echo base_url(); ?>assets/img/sdm_.png" class="sdm" alt="Museum" />
             <nav id='navigation'>
                         <?php $this->load->view('link'); ?>
@@ -23,14 +25,14 @@
             </nav>
 
         </header>
-
+        <!-- FINAL -->
             <div id="sidebar">
                 <h1>Openingstijden</h1>
                 <p>Het museum is iedere dag van het jaar open behalve maandag en de
                 laatste vrijdag van iedere maand.
                 Ook op nieuwjaarsdag zijn wij gesloten.
                 De reguliere uren zijn van 10 uur 's ochtends tot 6 uur 's avonds</p>
-				<?php $this->load->view('view_tours'); ?>
+				<?php //$this->load->view('view_tours'); ?>
             </div>
 
         <div class="container">

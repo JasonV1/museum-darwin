@@ -8,6 +8,7 @@ class Admin extends CI_Controller
         $this->load->model('admin_model');
     }
 
+    //first page for the admin to see upon login
     public function welcome_admin()
     {
         $this->load->view('header');
@@ -18,8 +19,11 @@ class Admin extends CI_Controller
     public function files()
     {
         $this->load->view('header');
+        //load images
         $data['images'] = $this->admin_model->get_photo_data();
+        //load videos
         $data['videos'] = $this->admin_model->get_video_data();
+        //load the view with files
         $this->load->view('admin/files', $data);
         $this->load->view('footer');
     }
@@ -27,7 +31,9 @@ class Admin extends CI_Controller
     public function image_overview($id)
     {
         $this->load->view("header");
+        //get image id
         $data['query'] = $this->admin_model->get_image_id($id);
+        //load view with image id
         $this->load->view('admin/image_overview', $data);
         $this->load->view("footer");
     }
@@ -35,7 +41,9 @@ class Admin extends CI_Controller
     public function video_overview($id)
     {
         $this->load->view("header");
+        //get video id
         $data['query'] = $this->admin_model->get_video_id($id);
+        //load view with video id
         $this->load->view('admin/video_overview', $data);
         $this->load->view("footer");
     }
@@ -43,6 +51,7 @@ class Admin extends CI_Controller
     public function upload_photo()
     {
         $this->load->view('header');
+        //load upload view
         $this->load->view('admin/upload_photo');
         $this->load->view('footer');
     }
@@ -50,7 +59,9 @@ class Admin extends CI_Controller
     public function edit_image($id)
     {
         $this->load->view("header");
+        //get image id
         $data['query'] = $this->admin_model->get_image_id($id);
+        //get edit form for image
         $this->load->view('admin/edit_image', $data);
         $this->load->view("footer");
     }
@@ -91,6 +102,7 @@ class Admin extends CI_Controller
     public function upload_video()
     {
         $this->load->view('header');
+        //load upload view
         $this->load->view('admin/upload_video');
         $this->load->view('footer');
     }
@@ -216,19 +228,20 @@ class Admin extends CI_Controller
     public function create_user()
     {
         $this->load->library('form_validation');
-        $roles = $this->input->post('role');
         // field name, error message, validation rules
         $this->form_validation->set_rules('name', 'Naam', 'trim|required');
         $this->form_validation->set_rules('email', 'E-mailadres', 'trim|required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
-        $this->form_validation->set_rules('role', 'Role', 'required|callback_select_validate');
+        $this->form_validation->set_rules('role', 'Role', 'required');
 
         if ($this->form_validation->run() == FALSE) {
 
             echo "Failed";
             $this->new_user();
         } else {
+            //add the user
             $this->admin_model->add_user();
+            //go back to users overview
             $this->users();
             redirect('admin/users', 'refresh');
             //$this->output->set_header('refresh:3;url=login_view');
@@ -240,41 +253,51 @@ class Admin extends CI_Controller
     public function edit_user($id)
     {
         $this->load->view('header');
+        //get user id
         $data['user'] = $this->admin_model->get_user_id($id);
+        //load view to edit user
         $this->load->view('admin/edit_user', $data);
         $this->load->view('footer');
     }
 
     public function delete_user($id)
     {
+        //delete the selected user id
         $this->admin_model->delete_user($id);
+        //go back to users overview
         $this->users();
+        //redirect the page so browser won't re-do the action upon refreshing page
         redirect('admin/users', 'refresh');
     }
 
     public function delete_image($id)
     {
+        //delete selected image
         $this->admin_model->delete_image($id);
+        //go back to files overview
         $this->files();
+        //redirect the page so browser won't re-do the action upon refreshing page
         redirect('admin/files', 'refresh');
     }
 
     public function delete_video($id)
     {
+        //delete selected video
         $this->admin_model->delete_video($id);
+        //go back to view overview
         $this->files();
+        //redirect the page so browser won't re-do the action upon refreshing page
         redirect('admin/files', 'refresh');
     }
 
     public function user_edit()
     {
         $this->load->library('form_validation');
-        $roles = $this->input->post('role');
         // field name, error message, validation rules
         $this->form_validation->set_rules('name', 'Naam', 'trim|required');
         $this->form_validation->set_rules('email', 'E-mailadres', 'trim|required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
-        $this->form_validation->set_rules('role', 'Role', 'required|callback_select_validate');
+        $this->form_validation->set_rules('role', 'Role', 'required');
 
         if ($this->form_validation->run() == FALSE) {
 
@@ -286,16 +309,6 @@ class Admin extends CI_Controller
             $this->users();
             redirect('admin/users', 'refresh');
             //$this->output->set_header('refresh:3;url=login_view');
-        }
-    }
-
-    function select_validate($roles)
-    {
-        if ($roles == "none") {
-            $this->form_validation->set_message('select_validate', 'Selecteer een rol');
-            return false;
-        } else {
-            return true;
         }
     }
 }

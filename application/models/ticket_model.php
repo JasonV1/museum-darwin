@@ -21,6 +21,28 @@ class Ticket_model extends CI_Model {
     }
     */
 
+    /**
+     * @return mixed
+     */
+    public function get_tickets() {
+        $query = $this->db->query("SELECT * FROM booking");
+
+        return $query->result();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function get_tour_test()
+    {
+        $query = $this->db->query("SELECT * FROM tours");
+        return $query->result();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function find_user($id) {
         $query = $this->db->query("SELECT email FROM visitor
                            WHERE id = '".$id."'");
@@ -28,6 +50,9 @@ class Ticket_model extends CI_Model {
         return $query->result();
     }
 
+    /**
+     * @return mixed
+     */
     public function get_ticket_data() {
         $query = $this->db->query("SELECT * FROM visitor, booking
                                    WHERE email = '".$this->session->userdata["ticket_data"]["email"]."'
@@ -55,6 +80,7 @@ class Ticket_model extends CI_Model {
 
         $now = date('Y-m-d H:i:s');
 
+        //if the result is less than one (so no record found yet), insert the user data in the db.
         if (count($result) < 1) {
             $this->db->insert('visitor', $data);
             $ticket = array(
@@ -64,6 +90,7 @@ class Ticket_model extends CI_Model {
             );
             $this->db->insert('booking', $ticket);
         }
+        //if a record exists, insert just the ticket
         else {
             $ticket = array(
                 'user_id' => $result[0]->id,

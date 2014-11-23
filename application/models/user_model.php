@@ -6,7 +6,12 @@ class User_model extends CI_Model {
      parent::__construct();
  }
 
- public function login($emailadres, $wachtwoord)
+    /**
+     * @param $emailadres
+     * @param $wachtwoord
+     * @return mixed
+     */
+    public function login($emailadres, $wachtwoord)
     {
         $query = $this->db->query("SELECT * FROM `employee`
                              LEFT JOIN `employee_role` ON `id` = `employee_role`.`employee_id`
@@ -30,7 +35,11 @@ class User_model extends CI_Model {
 
         }
     }
- public function get_users() {
+
+    /**
+     * @return mixed
+     */
+    public function get_users() {
      $query = $this->db->get('user');
      return $query->result();
  }

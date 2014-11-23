@@ -23,6 +23,21 @@ class Tour_model extends CI_Model
     }
 
     /**
+     * @return mixed
+     */
+    public function get_tour_test()
+    {
+        $query = $this->db->query("SELECT * FROM tours");
+        return $query->result();
+    }
+
+    public function tour_overview($id) {
+        $query = $this->db->query("SELECT * FROM tours
+                                    WHERE t_id = '".$id."'");
+        return $query->result();
+    }
+
+    /**
      * @param $id
      * @return mixed
      */
@@ -30,6 +45,12 @@ class Tour_model extends CI_Model
     {
         $query = $this->db->query("SELECT * FROM tours
                                     WHERE t_id = '" . $id . "'");
+        return $query->result();
+    }
+
+    public function get_all_tickets() {
+        $query = $this->db->query("SELECT * FROM booking");
+
         return $query->result();
     }
 
@@ -72,6 +93,7 @@ class Tour_model extends CI_Model
         $date = new DateTime("+ $starting days");
         $day = $date->format('Y-m-d');
 
+        //get tours that have less than 8 reservations a week from now
         $query = $this->db->query("SELECT t.t_id, t.name, t.status, COUNT( r.reservation_id ) AS c
                       FROM tours t
                       JOIN tours_reservations r ON t.t_id = r.tour_id
@@ -79,6 +101,7 @@ class Tour_model extends CI_Model
                       GROUP BY t.t_id
                       HAVING COUNT( c ) <=8", array($day));
 
+        //loop result from SELECT query and update the result
         foreach ($query->result() as $row)
         {
             $this->db->query("UPDATE tours SET status = 'geannuleerd' WHERE t_id = ? ", array($row->t_id));
@@ -87,20 +110,14 @@ class Tour_model extends CI_Model
     }
 
     /**
-     * @param $tours
      * @param $email
      */
-    public function add_reservation($tours, $email)
+    public function add_reservation($email)
     {
         $query = $this->db->query("SELECT id, email FROM visitor
                            WHERE email = " . $this->db->escape($email) . " LIMIT 1");
 
         $result = $query->result();
-
-        $reservations = $this->db->query("SELECT tour_id FROM tours_reservations
-                                          WHERE tour_id = " . $this->db->escape($tours) . "");
-
-        $result2 = $reservations->result();
 
         // Collect data array
         $data = array(
@@ -124,7 +141,7 @@ class Tour_model extends CI_Model
                 'created_at' => $now
             );
             $this->db->insert('tours_reservations', $tour);
-            echo "Bedankt! Uw toer is gereserveerd.";
+            echo "<h1>Bedankt! Uw toer is gereserveerd.</h1>";
         } else {
             $tour = array(
                 'tour_id' => $this->session->userdata["tour_data"]["tour_id"],

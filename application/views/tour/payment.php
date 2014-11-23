@@ -1,3 +1,4 @@
+<!-- FINAL -->
 <h1>Betaling aan het Darwin Museum</h1>
 <div class="payment_bank">
     <table>

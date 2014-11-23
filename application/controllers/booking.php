@@ -8,6 +8,22 @@ class Booking extends CI_Controller
         $this->load->model('ticket_model');
     }
 
+    //test if the model function is correct
+    public function test() {
+        $this->load->library('unit_test');
+
+        //get data array
+        $result = $this->ticket_model->get_tickets();
+
+        //define test name
+        $test_name = 'Check alle tickets in de database';
+
+        //run unit test
+        $this->unit->run($result, $this->ticket_model->get_tickets($result[0]), $test_name);
+        //load view for unit tests
+        $this->load->view('ticket/tests');
+    }
+
     public function index()
     {
         $this->load->view('header');

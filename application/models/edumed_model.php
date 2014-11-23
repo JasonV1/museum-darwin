@@ -31,6 +31,10 @@ class Edumed_model extends CI_Model
                           WHERE t_id = '" . $id . "'");
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function get_email_results($id)
     {
         $query = $this->db->query("SELECT t.t_id, t.name, r.reservation_id, r.user_id, v.id, v.email
@@ -42,6 +46,9 @@ class Edumed_model extends CI_Model
         return $query->result();
     }
 
+    /**
+     * @return mixed
+     */
     public function get_tours()
     {
         $query = $this->db->query("SELECT * FROM tours

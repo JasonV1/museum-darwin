@@ -7,7 +7,7 @@
 //$todaysBackground = strtotime('today') % count($backgrounds);
 ?>
 
-
+<!-- FINAL -->
 <style type="text/css">
     <!--
     body {

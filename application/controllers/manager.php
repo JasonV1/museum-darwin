@@ -14,6 +14,7 @@ class Manager extends CI_Controller
         $this->load->model('manager_model');
     }
 
+    //first page for the manager to see upon login
     public function welcome_manager()
     {
         $this->load->view('header');
@@ -24,15 +25,20 @@ class Manager extends CI_Controller
     public function get_visitors()
     {
         $this->load->view('header');
+        //get reservation data
         $data['reservations'] = $this->manager_model->get_reservation_data();
+        //get all the creation dates
         $data['created_at'] = $this->manager_model->get_reservation_dates();
+        //load the view
         $this->load->view('manager/visitors', $data);
         $this->load->view('footer');
     }
 
     public function show_visitors() {
+        //get date that was just selected
         $data['visitors'] = $this->manager_model->get_given_date($_POST);
         $this->load->view("header");
+        //load the view with all the visitors
         $this->load->view("manager/visitors_per_day", $data);
         $this->load->view("footer");
     }

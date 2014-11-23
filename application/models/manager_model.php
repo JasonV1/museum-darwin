@@ -25,7 +25,7 @@ class Manager_model extends CI_Model
     public function get_reservation_dates()
     {
         $return[''] = 'Selecteer een dag';
-        $query2 = $this->db->query("select distinct created_at as `d` from booking");
+        $query2 = $this->db->query("SELECT DISTINCT created_at AS `d` FROM booking");
 
         foreach($query2->result_array() as $row) {
             $return[] = $row['d'];

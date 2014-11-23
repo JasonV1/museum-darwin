@@ -1,3 +1,4 @@
+<!-- FINAL -->
 <div class="tours">
     <table>
         <thead>
@@ -13,10 +14,11 @@
             ?>
             <tr>
                 <td><?= $row->name; ?> (<?= $row->status; ?>)</td>
-                <td><?= $row->day; ?></td>
+                <td><?= $row->day; ?>
+                    10:00</td>
                 <td>&euro;<?= $row->price; ?></td>
                 <td><?= $row->spots; ?></td>
-                <td><a href="tour_overview">
+                <td><a href="tour_overview/<?= $row->t_id; ?>">
                         <button>Meer info</button>
                     </a></td>
                 <?php if ($row->status == 'vol' || $row->status == 'geannuleerd') { ?>

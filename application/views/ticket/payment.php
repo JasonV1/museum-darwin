@@ -3,6 +3,7 @@
     <table>
         <tr>
             <strong>Bank</strong>
+            <!-- FINAL -->
             <div class="select_styled">
                 <select>
                         <option value="rabo">Rabobank</option>
@@ -13,6 +14,7 @@
 
             </div>
             <td>
+                <!-- FINAL -->
                 <a onclick="open_in_new_tab_and_reload('add_ticket')" href="index">
                     <button>Betalen</button>
                 </a>
@@ -25,6 +27,7 @@
 <div class="payment_data">
     <table>
         <tr>
+            <!-- FINAL -->
             <td><strong>Naam</strong></td>
             <td class="second_td">
                 <?php echo $this->session->userdata["ticket_data"]["voornaam"]; ?>

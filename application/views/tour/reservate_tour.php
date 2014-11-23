@@ -9,6 +9,7 @@
 echo validation_errors();
 echo form_open('tour/payment');
 ?>
+<!-- FINAL -->
 <table>
     <?php
     foreach ($tours as $row) {

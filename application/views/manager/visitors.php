@@ -1,3 +1,4 @@
+<!-- FINAL -->
 <h1>Alle bezoekers per dag</h1>
 <table cellspacing="10">
     <form action="show_visitors" method="post">
