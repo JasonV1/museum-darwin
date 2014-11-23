@@ -31,7 +31,30 @@ class Edumed extends CI_Controller
     }
 
     public function cancel_tour($id) {
+        $data = $this->edumed_model->get_email_results($id);
         $this->edumed_model->update_tour($id);
+
+        $this->load->library('email');
+        foreach ($data as $row) {
+            $this->email->from('admin@jason-vandervegte.nl', 'Darwin Museum');
+            $this->email->to($row->email);
+
+            $this->email->subject('Annulering toer');
+            $this->email->message('Geachte bezoeker,
+
+                                   Onlangs heeft u een reservering gemaakt voor de toer: '.$row->name. '
+                                   Echter kan deze toer niet doorgaan vanwege een tekort aan verkochte tickets voor deze toer.
+                                   Het geld dat u heeft betaald voor deze toer wordt per direct teruggestort.
+
+                                   Ons excuses voor dit ongemak.
+
+                                   Met vriendelijke groet,
+
+                                   Het Russisch Darwin museum
+                ');
+
+            $this->email->send();
+        }
         $this->view_tours();
     }
     public function view_tours()

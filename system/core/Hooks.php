@@ -28,6 +28,8 @@
  */
 class CI_Hooks {
 
+
+
 	/**
 	 * Determines wether hooks are enabled
 	 *
@@ -67,6 +69,14 @@ class CI_Hooks {
 	 */
 	function _initialize()
 	{
+	// application/config/hooks.php
+$hook['display_override'] = array(
+         'class' => 'DisplayHook',
+         'function' => 'captureOutput',
+         'filename' => 'DisplayHook.php',
+         'filepath' => 'hooks'
+    );
+	
 		$CFG =& load_class('Config', 'core');
 
 		// If hooks are not enabled in the config file
@@ -239,6 +249,8 @@ class CI_Hooks {
 		$this->in_progress = FALSE;
 		return TRUE;
 	}
+	
+	
 
 }
 
