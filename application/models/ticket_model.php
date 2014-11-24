@@ -61,6 +61,22 @@ class Ticket_model extends CI_Model {
         return $query->result();
 
     }
+
+    public function get_ticket_cred($email, $ticket_id) {
+        $query = $this->db->query("SELECT * FROM visitor, booking
+                                   WHERE email = '".$email."'
+                                   AND ticket_id = '".$ticket_id."'");
+
+        return $query->result();
+    }
+
+    public function get_user_cred($email, $id) {
+        $query = $this->db->query("SELECT * FROM visitor
+                                   WHERE email = '".$email."'
+                                   AND id = '".$id."'");
+
+        return $query->result();
+    }
     public function add_ticket($email) {
         $query = $this->db->query("SELECT id, email FROM visitor
                            WHERE email = ".$this->db->escape($email)." limit 1");
