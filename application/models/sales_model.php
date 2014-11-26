@@ -13,11 +13,22 @@ class Sales_model extends CI_Model
         parent::__construct();
     }
 
-    public function get_ticket_data() {
+    public function get_ticket() {
         $query = $this->db->query("SELECT * FROM booking
-                                   WHERE ticket_id = ".$this->db->insert_id()."");
+                                   WHERE ticket_id = '".$this->db->insert_id()."'");
 
         return $query->result();
 
+    }
+
+    public function create_ticket() {
+        $now = date('Y-m-d');
+        $data = array(
+            'price' => $this->input->post('price'),
+            'employee_id' => $this->session->userdata["logged_in"]["employee_id"],
+            'created_at' => $now
+        );
+
+        $this->db->insert('booking', $data);
     }
 } 

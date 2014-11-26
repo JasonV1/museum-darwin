@@ -62,6 +62,13 @@ class Ticket_model extends CI_Model {
 
     }
 
+    public function get_ticket() {
+        $query = $this->db->query("SELECT * FROM booking
+                                   WHERE ticket_id = ".$this->db->insert_id()."");
+
+        return $query->result();
+    }
+
     public function get_ticket_cred($email, $ticket_id) {
         $query = $this->db->query("SELECT * FROM visitor, booking
                                    WHERE email = '".$email."'

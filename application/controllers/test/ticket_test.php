@@ -18,7 +18,7 @@ class ticket_test extends Toast
         //Prepare unit test user database entry
 
         $data = array(
-            'id' => '905',
+            'id' => '198',
             'voornaam' => 'Test',
             'tussenvoegsel' => 'de',
             'achternaam' => 'Gebruiker',
@@ -32,8 +32,8 @@ class ticket_test extends Toast
         $this->db->insert('visitor', $data);
         $now = date('Y-m-d H:i:s');
         $ticket = array(
-            'ticket_id' => '905',
-            'user_id' => $this->db->insert_id(),
+            'ticket_id' => '198',
+            'user_id' => '198',
             'price' => '2.5',
             'created_at' => $now
         );
@@ -43,14 +43,14 @@ class ticket_test extends Toast
 
     function test_ticket()
     {
-        $this->_assert_true($this->ticket->ticket_model->get_ticket_cred('test@gmail.com', '905'));
+        $this->_assert_true($this->ticket->ticket_model->get_ticket_cred('test@gmail.com', '198'));
     }
 
     function _post()
     {
 
         //Remove unit test office from database
-        $this->db->delete('visitor', array('id' => '905'));
-        $this->db->delete('booking', array('user_id' => '905'));
+        $this->db->delete('visitor', array('id' => '198'));
+        $this->db->delete('booking', array('user_id' => '198'));
     }
 }

@@ -37,6 +37,7 @@ class Manager extends CI_Controller
     public function show_visitors() {
         //get date that was just selected
         $data['visitors'] = $this->manager_model->get_given_date($_POST);
+
         $this->load->view("header");
         //load the view with all the visitors
         $this->load->view("manager/visitors_per_day", $data);
@@ -60,10 +61,18 @@ class Manager extends CI_Controller
         $this->load->view('footer');
     }
 
+    public function past_three_months() {
+        $this->load->view('header');
+        $data['visitors'] = $this->manager_model->past_three_months();
+        $this->load->view('manager/past_three_months', $data);
+        $this->load->view('footer');
+    }
+
     public function weekoverview()
     {
         $this->load->view('header');
-        $this->load->view('manager/weekoverview');
+        $data['visitors'] = $this->manager_model->weekoverview();
+        $this->load->view('manager/weekoverview', $data);
         $this->load->view('footer');
     }
 } 

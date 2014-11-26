@@ -3,12 +3,13 @@
 <table id="tblExport">
     <?php $rows['num_rows'] = count($visitors); ?>
     <tr>
-        <td><strong>Aantal bezoekers op deze dag:</strong> <?= $rows['num_rows']; ?></td>
+        <td><strong>Aantal bezoekers:</strong> <?= $rows['num_rows']; ?></td>
     </tr>
     <tr>
         <th>Naam</th>
         <th>Woonplaats</th>
         <th>Postcode</th>
+        <th>Datum</th>
     </tr>
 
 
@@ -25,6 +26,9 @@
         </td>
         <td>
             <?php echo $row->postcode; ?>
+        </td>
+        <td>
+            <?php echo $row->created_at; ?>
         </td>
         <?php
         } ?>

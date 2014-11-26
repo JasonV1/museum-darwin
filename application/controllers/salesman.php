@@ -5,6 +5,7 @@ class Salesman extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('sales_model');
     }
 
     public function welcome_salesman()
@@ -25,13 +26,13 @@ class Salesman extends CI_Controller
         //load the pdf library
         $this->load->library('mpdf');
         //get data from the model
-        $data['query'] = $this->ticket_model->get_ticket_data();
+        $data['query'] = $this->sales_model->get_ticket();
         $mpdf = new mPDF('c', 'A4', '', '', 32, 25, 27, 25, 16, 13);
         $mpdf->SetDisplayMode('fullpage');
         //whether to indent the first level of a list
         $mpdf->list_indent_first_level = 0; // 1 or 0 -
         //load view for the pdf
-        $html = $this->load->view('ticket/ticket_view', $data, TRUE);
+        $html = $this->load->view('salesman/ticket_view', $data, TRUE);
         $mpdf->WriteHTML($html);
         //output pdf as ticket.pdf and download immediately
         $mpdf->Output('ticket.pdf', 'D');
@@ -40,13 +41,14 @@ class Salesman extends CI_Controller
     public function payment() {
         $this->load->library('form_validation');
         // field name, error message, validation rules
-        $this->form_validation->set_rules('price', 'Prijs', 'required');
+        $this->form_validation->set_rules('price', 'Price', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             echo "Failed";
-            $this->reservate();
+            $this->welcome_salesman();
         } else {
-            $this->salesman_model->create_ticket();
+            echo "Done";
+            $this->sales_model->create_ticket();
             $this->get_pdf();
             $this->welcome_salesman();
         }

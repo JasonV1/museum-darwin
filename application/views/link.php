@@ -35,6 +35,9 @@
                     <a href='" . base_url() . "manager/weekoverview'>Weekoverzicht</a>
                  </li>
                  <li>
+                    <a href='" . base_url() . "manager/past_three_months'>Afgl. 3 mnden</a>
+                 </li>
+                 <li>
                     <a href='" . base_url() . "user/logout'>Logout</a>
                  </li>";
         }

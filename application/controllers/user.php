@@ -56,6 +56,7 @@ class User extends CI_Controller
 
         $result = $this->user_model->login($emailadres, $wachtwoord);
         if ($result[0]->role_id == 1) {
+            $this->log();
             redirect('admin/welcome_admin', 'refresh');
         }
         if ($result[0]->role_id == 2) {
@@ -69,6 +70,22 @@ class User extends CI_Controller
         } else {
             echo "Login mislukt, probeer opnieuw";
             $this->login();
+        }
+    }
+
+    private function log() {
+        $this->load->helper('file');
+        date_default_timezone_set('Europe/Amsterdam');
+        $date = date('d-m-Y H:i:s');
+        $emailadres = $this->input->post('email');
+        $wachtwoord = ($this->input->post('password'));
+
+        $result = $this->user_model->login($emailadres, $wachtwoord);
+        $data = ''.$emailadres.' heeft om '.$date.'  ingelogd';
+
+        if ( ! write_file('./assets/log/file.txt', $data."\n", 'a+'))
+        {
+            echo 'Unable to write the file';
         }
     }
 
