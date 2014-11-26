@@ -10,9 +10,15 @@
         ?>
         <tr>
             <td>
+                <?php if (empty($row->achternaam)) {
+                    echo "verkoper ticket";
+                }
+                else { ?>
+
                 <?php echo $row->voornaam; ?>
                 <?php echo $row->tussenvoegsel; ?>
-                <?php echo $row->achternaam; ?>
+                <?php echo $row->achternaam;  }?>
+
             </td>
             <td>
                 <?php echo $row->woonplaats; ?>

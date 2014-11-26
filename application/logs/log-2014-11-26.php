@@ -616,3 +616,9 @@ ERROR - 2014-11-26 13:32:00 --> Severity: Notice  --> Undefined index: bpa C:\wa
 ERROR - 2014-11-26 13:32:00 --> Severity: Notice  --> Undefined index: used C:\wamp\www\museum-darwin\application\libraries\mpdf\mpdf.php 27535
 ERROR - 2014-11-26 13:32:00 --> Severity: Notice  --> Undefined property: mPDF::$hasOC C:\wamp\www\museum-darwin\application\libraries\mpdf\mpdf.php 27608
 ERROR - 2014-11-26 13:32:00 --> Severity: Notice  --> Undefined property: mPDF::$hasOC C:\wamp\www\museum-darwin\application\libraries\mpdf\mpdf.php 9158
+ERROR - 2014-11-26 13:39:10 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\wamp\www\museum-darwin\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2014-11-26 13:43:00 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\wamp\www\museum-darwin\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2014-11-26 13:44:25 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'YEARWEEK(booking.created_at, 1) = YEARWEEK(CURDATE(), 1)
+                      ' at line 3

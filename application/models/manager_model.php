@@ -41,7 +41,8 @@ class Manager_model extends CI_Model
                                     FROM booking
                                     LEFT JOIN visitor ON user_id = visitor.id
                                     WHERE booking.created_at >= NOW() - INTERVAL 3 MONTH
-                                    ORDER BY visitor.woonplaats");
+                                    ORDER BY visitor.woonplaats
+                                    ");
 
         return $query->result();
     }
@@ -50,8 +51,7 @@ class Manager_model extends CI_Model
     {
         $query = $this->db->query("SELECT * FROM booking
                                     LEFT JOIN visitor ON user_id = visitor.id
-                                    WHERE booking.created_at >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
-                                    AND booking.created_at < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY
+                                    WHERE YEARWEEK(booking.created_at, 1) = YEARWEEK(CURDATE(), 1)
                                     ORDER BY booking.created_at");
 
         return $query->result();
