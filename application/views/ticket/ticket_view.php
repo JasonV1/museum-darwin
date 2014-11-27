@@ -27,14 +27,14 @@
         /* Set a background color that will be displayed
            while the background image is loading */
         background-color: #464646;
-    <?php $dayforbackground=date('N'); ?> <?php if ($dayforbackground==1) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
-    <?php } ?> <?php if ($dayforbackground==2) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
+    <?php $dayforbackground=date('N'); ?> <?php if ($dayforbackground==1) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg1.jpg') no-repeat center fixed;
+    <?php } ?> <?php if ($dayforbackground==2) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg2.jpg') no-repeat center fixed;
     <?php } ?> <?php if ($dayforbackground==3) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
-    <?php } ?> <?php if ($dayforbackground==4) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
-    <?php } ?> <?php if ($dayforbackground==5) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg2.jpg') no-repeat center fixed;
+    <?php } ?> <?php if ($dayforbackground==4) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg4.jpg') no-repeat center fixed;
+    <?php } ?> <?php if ($dayforbackground==5) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg5.jpg') no-repeat center fixed;
 
-    <?php } ?> <?php if ($dayforbackground==6) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
-    <?php } ?> <?php if ($dayforbackground==7) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg3.jpg') no-repeat center fixed;
+    <?php } ?> <?php if ($dayforbackground==6) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg6.jpg') no-repeat center fixed;
+    <?php } ?> <?php if ($dayforbackground==7) { ?> background-image: url('<?= base_url(); ?>assets/img/pdfbg7.jpg') no-repeat center fixed;
 
     <?php } ?>
 

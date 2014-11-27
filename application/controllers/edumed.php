@@ -7,6 +7,35 @@ class Edumed extends CI_Controller
         parent::__construct();
         $this->load->model('edumed_model');
         $this->check_tour();
+        $this->security();
+    }
+
+    public function security()
+    {
+        if ( !isset( $this->session->userdata["logged_in"]["email"]) )
+        {
+            echo "U bent niet ingelogd en daarom niet bevoegd om deze pagina te bekijken.";
+            header('refresh:3;url='.base_url().'');
+            exit();
+        }
+        else if ( $this->session->userdata["logged_in"]["role_id"] ==  1 )
+        {
+            echo "U heeft niet de juiste gebruikersrol, u wordt doorgestuurd naar uw homepage.";
+            header('refresh:3;url='.base_url().'admin/welcome_admin');
+            exit();
+        }
+        else if ( $this->session->userdata["logged_in"]["role_id"] ==  4 )
+        {
+            echo "U heeft niet de juiste gebruikersrol, u wordt doorgestuurd naar uw homepage.";
+            header('refresh:3;url='.base_url().'salesman/welcome_salesman');
+            exit();
+        }
+        else if ( $this->session->userdata["logged_in"]["role_id"] ==  2 )
+        {
+            echo "U heeft niet de juiste gebruikersrol, u wordt doorgestuurd naar uw homepage.";
+            header('refresh:3;url='.base_url().'manager/welcome_manager');
+            exit();
+        }
     }
 
     /**

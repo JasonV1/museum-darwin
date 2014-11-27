@@ -6,6 +6,35 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('admin_model');
+        $this->security();
+    }
+
+    public function security()
+    {
+        if ( !isset( $this->session->userdata["logged_in"]["email"]) )
+        {
+            echo "U bent niet ingelogd en daarom niet bevoegd om deze pagina te bekijken.";
+            header('refresh:3;url='.base_url().'');
+            exit();
+        }
+        else if ( $this->session->userdata["logged_in"]["role_id"] ==  4 )
+        {
+            echo "U heeft niet de juiste gebruikersrol, u wordt doorgestuurd naar uw homepage.";
+            header('refresh:3;url='.base_url().'salesman/welcome_salesman');
+            exit();
+        }
+        else if ( $this->session->userdata["logged_in"]["role_id"] ==  3 )
+        {
+            echo "U heeft niet de juiste gebruikersrol, u wordt doorgestuurd naar uw homepage.";
+            header('refresh:3;url='.base_url().'edumed/welcome_edumed');
+            exit();
+        }
+        else if ( $this->session->userdata["logged_in"]["role_id"] ==  2 )
+        {
+            echo "U heeft niet de juiste gebruikersrol, u wordt doorgestuurd naar uw homepage.";
+            header('refresh:3;url='.base_url().'manager/welcome_manager');
+            exit();
+        }
     }
 
     //first page for the admin to see upon login

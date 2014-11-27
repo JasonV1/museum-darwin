@@ -6,6 +6,35 @@ class Salesman extends CI_Controller
     {
         parent::__construct();
         $this->load->model('sales_model');
+        $this->security();
+    }
+
+    public function security()
+    {
+        if ( !isset( $this->session->userdata["logged_in"]["email"]) )
+        {
+            echo "U bent niet ingelogd en daarom niet bevoegd om deze pagina te bekijken.";
+            header('refresh:3;url='.base_url().'');
+            exit();
+        }
+        else if ( $this->session->userdata["logged_in"]["role_id"] ==  1 )
+        {
+            echo "U heeft niet de juiste gebruikersrol, u wordt doorgestuurd naar uw homepage.";
+            header('refresh:3;url='.base_url().'admin/welcome_admin');
+            exit();
+        }
+        else if ( $this->session->userdata["logged_in"]["role_id"] ==  3 )
+        {
+            echo "U heeft niet de juiste gebruikersrol, u wordt doorgestuurd naar uw homepage.";
+            header('refresh:3;url='.base_url().'edumed/welcome_edumed');
+            exit();
+        }
+        else if ( $this->session->userdata["logged_in"]["role_id"] ==  2 )
+        {
+            echo "U heeft niet de juiste gebruikersrol, u wordt doorgestuurd naar uw homepage.";
+            header('refresh:3;url='.base_url().'manager/welcome_manager');
+            exit();
+        }
     }
 
     public function welcome_salesman()

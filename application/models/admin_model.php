@@ -83,6 +83,7 @@ class Admin_model extends CI_Model
     {
         $query = $this->db->query("SELECT * FROM employee_role
                                    LEFT JOIN employee ON employee_id = employee.id
+                                   RIGHT JOIN password ON employee_id = password.employee
                                    WHERE employee.id = '" . $id . "'");
         return $query->result();
     }
@@ -92,14 +93,20 @@ class Admin_model extends CI_Model
         $this->db->trans_start();
         $data = array(
             'naam' => $this->input->post('name'),
-            'email' => $this->input->post('email'),
-            'password' => ($this->input->post('password'))
+            'email' => $this->input->post('email')
         );
 
 
         $this->db->insert('employee', $data);
 
         $table1_id = $this->db->insert_id();
+
+        $password = array(
+            'employee' => $table1_id,
+            'password' => ($this->input->post('password'))
+        );
+
+        $this->db->insert('password', $password);
 
         $this->db->query('INSERT INTO employee_role VALUES(' . $table1_id . ', ' . $this->input->post('role') . ')');
 
@@ -160,11 +167,14 @@ class Admin_model extends CI_Model
         $this->db->trans_start();
         $this->db->query("UPDATE employee SET
                                   naam = '" . $post['name'] . "',
-                                  email = '" . $post['email'] . "',
-                                  password = '" . $post['password'] . "'
+                                  email = '" . $post['email'] . "'
                             WHERE id = '" . $post['id'] . "'");
 
         $last_id = $post['id'];
+
+        $this->db->query("UPDATE password SET
+                                  password = '" . $post['password'] . "'
+                            WHERE employee = '".$last_id."'");
 
         $this->db->query("UPDATE employee_role SET role_id = '" . $this->input->post('role') . "'
                                                 WHERE employee_id = '" . $last_id . "'");
