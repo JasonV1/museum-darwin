@@ -106,6 +106,55 @@ class Admin_model extends CI_Model
         $this->db->trans_complete();
     }
 
+    /**
+     * @return mixed
+     */
+    public function get_login_attempts()
+    {
+        $query = $this->db->query("SELECT * FROM login_attempts");
+
+        return $query->result();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function get_logins()
+    {
+        $query = $this->db->query("SELECT * FROM succesful_login");
+
+        return $query->result();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function get_blocked_users()
+    {
+        $query = $this->db->query("SELECT * FROM employee
+                                   WHERE blocked = 'yes'");
+
+        return $query->result();
+    }
+
+    public function unblock_user($id) {
+        //Unblock the user
+        $this->db->query("UPDATE employee SET blocked = 'no'
+                          WHERE id = '".$id."'");
+
+        //get the employee id
+        $query = $this->db->query("SELECT * FROM employee
+                                   WHERE id = '".$id."'");
+
+        //erase the login attempts
+        foreach ($query->result() as $row) {
+            $this->db->query("DELETE FROM login_attempts
+                          WHERE emailadres = ?", array($row->email));
+        }
+
+
+    }
+
     public function edit_user($post)
     {
         $this->db->trans_start();
@@ -124,22 +173,25 @@ class Admin_model extends CI_Model
 
     }
 
-    public function delete_user($id) {
+    public function delete_user($id)
+    {
         //delete record with selected id
         $this->db->query("DELETE FROM employee
-                        WHERE id = '".$id."'");
+                        WHERE id = '" . $id . "'");
     }
 
-    public function delete_image($id) {
+    public function delete_image($id)
+    {
         //delete record with selected id
         $this->db->query("DELETE FROM image
-                        WHERE id = '".$id."'");
+                        WHERE id = '" . $id . "'");
     }
 
-    public function delete_video($id) {
+    public function delete_video($id)
+    {
         //delete record with selected id
         $this->db->query("DELETE FROM video
-                        WHERE id = '".$id."'");
+                        WHERE id = '" . $id . "'");
     }
 
     public function add_image()

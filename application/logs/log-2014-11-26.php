@@ -622,3 +622,4 @@ ERROR - 2014-11-26 13:43:00 --> Severity: Notice  --> mysql_pconnect(): send of 
  C:\wamp\www\museum-darwin\system\database\drivers\mysql\mysql_driver.php 91
 ERROR - 2014-11-26 13:44:25 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'YEARWEEK(booking.created_at, 1) = YEARWEEK(CURDATE(), 1)
                       ' at line 3
+ERROR - 2014-11-26 16:36:01 --> 404 Page Not Found --> assets

@@ -17,6 +17,15 @@
                     <a href='" . base_url() . "admin/users'>Medewerkers</a>
                  </li>
                  <li>
+                    <a href='" . base_url() . "admin/logins'>Logins</a>
+                 </li>
+                 <li>
+                    <a href='" . base_url() . "admin/print_log'>Log</a>
+                 </li>
+                 <li>
+                    <a href='" . base_url() . "admin/blocked_users'>Geblok. gebruikers</a>
+                 </li>
+                 <li>
                     <a href='" . base_url() . "user/logout'>Logout</a>
                  </li>";
         }

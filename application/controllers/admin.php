@@ -270,6 +270,17 @@ class Admin extends CI_Controller
         redirect('admin/users', 'refresh');
     }
 
+    public function print_log()
+    {
+        $filename = '././assets/log/login_attempts.txt';
+        $contents = file($filename);
+
+        $data['contents'] = $contents;
+        $this->load->view('header');
+        $this->load->view('admin/log', $data);
+        $this->load->view('footer');
+    }
+
     public function delete_image($id)
     {
         //delete selected image
@@ -310,5 +321,27 @@ class Admin extends CI_Controller
             redirect('admin/users', 'refresh');
             //$this->output->set_header('refresh:3;url=login_view');
         }
+    }
+
+    public function logins() {
+        $this->load->view('header');
+        //get attempts
+        $data['logins'] = $this->admin_model->get_login_attempts();
+        //get succesful logins
+        $data['login'] = $this->admin_model->get_logins();
+        $this->load->view('admin/logins', $data);
+        $this->load->view('footer');
+    }
+
+    public function blocked_users() {
+        $this->load->view('header');
+        $data['users'] = $this->admin_model->get_blocked_users();
+        $this->load->view('admin/blocked_users', $data);
+        $this->load->view('footer');
+    }
+
+    public function unblock_user($id) {
+        $this->admin_model->unblock_user($id);
+        $this->blocked_users();
     }
 }
